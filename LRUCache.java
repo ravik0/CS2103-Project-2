@@ -107,8 +107,8 @@ public class LRUCache<T, U> implements Cache<T, U> {
 	 * @author Ravi
 	 */
 	private class CachedObject {
-		public U obj;
-		public T key;
+		final public U obj;
+		final public T key;
 		public CachedObject before;
 		public CachedObject after;
 		public CachedObject(T key, U object) {

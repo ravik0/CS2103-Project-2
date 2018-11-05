@@ -46,6 +46,7 @@ public class CacheTest {
 		for(int i = 0; i < 50; i++) {
 			cache.get(i); //get all num from 0 to 49, should have 47/48/49 in cache and 50 misses
 		}
+		assertEquals(cache.getNumMisses(), 50);
 		cache.get(49); //gets 49, should have 50 misses still
 		assertEquals(cache.getNumMisses(), 50);
 		cache.get(42); //gets 42, 42 was in but now isn't, so should get 51 misses
@@ -61,7 +62,7 @@ public class CacheTest {
 	@Test
 	public void testLackOfEviction() {
 		final LRUCache<Integer,String> cache = new LRUCache<Integer,String>(provider, 3);
-		for(int i = 0; i < 23; i++) {
+		for(int i = 0; i < 50; i++) {
 			for(int j = 0; j < 3; j++) {
 				cache.get(j);
 				//just going through the same numbers 23 times.
