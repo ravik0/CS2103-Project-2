@@ -20,19 +20,19 @@ public class CacheTest {
 	@Test
 	public void cacheProvidingIsCorrect() {
 		final LRUCache<Integer,String> cache = new LRUCache<Integer,String>(provider, 3);
-		assertEquals(cache.get(1),"1");
-		cache.get(2);
-		cache.get(3);
+		assertEquals(cache.get(1), "1");
+		assertEquals(cache.get(2), "2");
+		assertEquals(cache.get(3), "3");
 		assertEquals(cache.getNumMisses(), 3);
-		cache.get(4); //get rid of 1 for 4
+		assertEquals(cache.get(4), "4"); //get rid of 1 for 4
 		assertEquals(cache.getNumMisses(), 4);
-		cache.get(2); //get 2, doesn't need to provide
+		assertEquals(cache.get(2), "2"); //get 2, doesn't need to provide
 		assertEquals(cache.getNumMisses(), 4);
-		cache.get(5); //get rid of 3 for 5
+		assertEquals(cache.get(5), "5"); //get rid of 3 for 5
 		assertEquals(cache.getNumMisses(), 5);
-		cache.get(2);
-		cache.get(5);
-		cache.get(4); 
+		assertEquals(cache.get(2), "2");
+		assertEquals(cache.get(5), "5");
+		assertEquals(cache.get(4), "4");
 		//should not need to provide for any of these
 		assertEquals(cache.getNumMisses(), 5);
 	}
@@ -77,19 +77,19 @@ public class CacheTest {
 	 */
 	@Test
 	public void testBigCache() {
-		final LRUCache<Integer,String> cache = new LRUCache<Integer,String>(provider, 500);
-		for(int i = 0; i < 500; i++) {
+		final LRUCache<Integer,String> cache = new LRUCache<Integer,String>(provider, 50000);
+		for(int i = 0; i < 50000; i++) {
 			cache.get(i);
 		}
-		assertEquals(cache.getNumMisses(), 500); //all misses
-		cache.get(499); //get last element
-		assertEquals(cache.getNumMisses(), 500);
-		cache.get(254); //get middle element
-		assertEquals(cache.getNumMisses(), 500);
-		cache.get(254); //get first element
-		assertEquals(cache.getNumMisses(), 500);
+		assertEquals(cache.getNumMisses(), 50000); //all misses
+		cache.get(49999); //get last element
+		assertEquals(cache.getNumMisses(), 50000);
+		cache.get(25444); //get middle element
+		assertEquals(cache.getNumMisses(), 50000);
+		cache.get(25444); //get first element
+		assertEquals(cache.getNumMisses(), 50000);
 		cache.get(35240324); //tests evicting from big list
-		assertEquals(cache.getNumMisses(), 501);
+		assertEquals(cache.getNumMisses(), 50001);
 	}
 	
 	

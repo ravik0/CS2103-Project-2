@@ -4,6 +4,8 @@ import java.util.Map;
 /**
  * An implementation of <tt>Cache</tt> that uses a least-recently-used (LRU)
  * eviction policy.
+ * @author Ravi Kirschner
+ * @author Noah Darveau
  */
 public class LRUCache<T, U> implements Cache<T, U> {
 	final private Map<T, CachedObject> cache;
@@ -104,7 +106,6 @@ public class LRUCache<T, U> implements Cache<T, U> {
 	/**
 	 * Inner class to hold the CachedObject.
 	 * It is comparable to the Node class from class on 11/2/18
-	 * @author Ravi
 	 */
 	private class CachedObject {
 		final public U obj;
