@@ -7,6 +7,7 @@ import org.junit.Test;
  */
 public class CacheTest {
 	private Provider provider;
+	private Cache<Integer, String> bigCache;
 	private static class Provider implements DataProvider<Integer,String> {
 		public Provider() {}
 		public String get(Integer key) {
@@ -73,23 +74,19 @@ public class CacheTest {
 	
 	/**
 	 * Makes sure that the cache can handle big numbers and that runtime is not
-	 * change by big numbers.
+	 * hurt by big numbers
 	 */
 	@Test
 	public void testBigCache() {
-		final LRUCache<Integer,String> cache = new LRUCache<Integer,String>(provider, 50000);
-		for(int i = 0; i < 50000; i++) {
-			cache.get(i);
-		}
-		assertEquals(cache.getNumMisses(), 50000); //all misses
-		cache.get(49999); //get last element
-		assertEquals(cache.getNumMisses(), 50000);
-		cache.get(25444); //get middle element
-		assertEquals(cache.getNumMisses(), 50000);
-		cache.get(25444); //get first element
-		assertEquals(cache.getNumMisses(), 50000);
-		cache.get(35240324); //tests evicting from big list
-		assertEquals(cache.getNumMisses(), 50001);
+		assertEquals(bigCache.getNumMisses(), 50000); //all misses
+		bigCache.get(49999); //get last element
+		assertEquals(bigCache.getNumMisses(), 50000);
+		bigCache.get(25444); //get middle element
+		assertEquals(bigCache.getNumMisses(), 50000);
+		bigCache.get(25444); //get first element
+		assertEquals(bigCache.getNumMisses(), 50000);
+		bigCache.get(35240324); //tests evicting from big list
+		assertEquals(bigCache.getNumMisses(), 50001);
 	}
 	
 	
@@ -97,5 +94,9 @@ public class CacheTest {
 	@Before
 	public void init() {
 		provider = new Provider();
+		bigCache = new LRUCache<Integer,String>(provider, 50000);
+		for(int i = 0; i < 50000; i++) {
+			bigCache.get(i);
+		}
 	}
 }
