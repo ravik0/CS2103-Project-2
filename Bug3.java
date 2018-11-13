@@ -4,7 +4,7 @@ import java.util.HashMap;
  * An implementation of <tt>Cache</tt> that uses a least-recently-used (LRU)
  * eviction policy.
  */
-public class LRUCache<T, U> implements Cache<T, U> {
+public class Bug3<T, U> implements Cache<T, U> {
 	
 	DataProvider<T, U> provider ;
 	int capacity  , miss ,removed ;
@@ -32,7 +32,7 @@ public class LRUCache<T, U> implements Cache<T, U> {
 	 * @param provider the data provider to consult for a cache miss
 	 * @param capacity the exact number of (key,value) pairs to store in the cache
 	 */
-	public LRUCache (DataProvider<T, U> provider, int capacity) 
+	public Bug3 (DataProvider<T, U> provider, int capacity) 
 	{
 		this.provider=provider;
 		this.capacity = capacity;

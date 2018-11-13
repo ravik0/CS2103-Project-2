@@ -4,7 +4,7 @@ import java.util.HashMap;
  * An implementation of <tt>Cache</tt> that uses a least-recently-used (LRU)
  * eviction policy.
  */
-public class LRUCache<T, U> implements Cache<T, U> {
+public class Bug1<T, U> implements Cache<T, U> {
   //LList is a linked hashmap;
   private class Node{
     public T key;
@@ -85,7 +85,7 @@ public class LRUCache<T, U> implements Cache<T, U> {
   private int misses;
   private LList storage;
   
-  public LRUCache (DataProvider<T, U> p, int c) {
+  public Bug1 (DataProvider<T, U> p, int c) {
     provider = p;
     capacity = c;
     storage = new LList(c);

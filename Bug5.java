@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LRUCache<T, U> implements Cache<T, U> {
+public class Bug5<T, U> implements Cache<T, U> {
 	protected static class Node<T, U> {
 		T key;
 		U value;
@@ -21,7 +21,7 @@ public class LRUCache<T, U> implements Cache<T, U> {
 		return numMisses;
 	}
 
-	public LRUCache (DataProvider<T, U> provider_, int capacity_) {
+	public Bug5 (DataProvider<T, U> provider_, int capacity_) {
 		if (capacity_ < 1) {
 			throw new IllegalArgumentException("capacity must be at least 1");
 		}
