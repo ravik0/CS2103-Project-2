@@ -64,7 +64,6 @@ public class LRUCache<T, U> implements Cache<T, U> {
 		if(front != null) front.before = x; //if front isn't null, set fronts before pointer to x
 		front = x; //set front to x
 		if(back == null) back = front; //if there was no back previously, then x is both front and back
-
 	}
 
 	/**
